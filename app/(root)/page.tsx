@@ -1,15 +1,11 @@
-import { ModeToggle } from "@/components/ui/mode-toggle";
-import { UserButton } from "@clerk/nextjs";
+import { startNewChat } from "@/features/home/actions/start-new-chat";
+import { redirect } from "next/navigation";
 import React from "react";
 
-const Home = () => {
-  return (
-    <div>
-      <ModeToggle />
-      <h1>This is home page of the chat gpt</h1>
-      <UserButton />
-    </div>
-  );
+const page = async () => {
+  const conversationId = await startNewChat();
+
+  redirect(`/c/${conversationId}`);
 };
 
-export default Home;
+export default page;

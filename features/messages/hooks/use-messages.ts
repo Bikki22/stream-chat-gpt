@@ -28,7 +28,7 @@ export async function useCreateMessage(conversationId: string) {
         queryKey: queryKeys.messages.byConversation(conversationId),
       });
       void queryClient.invalidateQueries({
-        queryKey: queryKeys.conversation.all,
+        queryKey: queryKeys.conversations.all,
       });
     },
     onError: (error: Error) => {

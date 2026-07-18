@@ -1,7 +1,7 @@
 export const queryKeys = {
-  conversation: {
-    all: ["conversation"] as const,
-    detail: (id: string) => ["conversation", id] as const,
+  conversations: {
+    all: ["conversations"] as const,
+    detail: (id: string) => ["conversations", id] as const,
   },
 
   messages: {

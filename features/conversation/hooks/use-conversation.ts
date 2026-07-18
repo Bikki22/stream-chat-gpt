@@ -14,8 +14,8 @@ import { queryKeys } from "../utils/query-keys";
 
 export function useConversations() {
   return useQuery({
-    queryKey: queryKeys.conversation.all,
-    queryFn: () => listConversations,
+    queryKey: queryKeys.conversations.all,
+    queryFn: () => listConversations(),
   });
 }
 
@@ -27,7 +27,7 @@ export function useCreateConversation() {
     mutationFn: (title: string) => createConversation(title),
     onSuccess: (conversation) => {
       void queryClient.invalidateQueries({
-        queryKey: queryKeys.conversation.all,
+        queryKey: queryKeys.conversations.all,
       });
       router.push(`/c/${conversation.id}`);
     },
@@ -51,10 +51,10 @@ export function useUpdateConversation() {
     }) => updateConversation(id, data),
     onSuccess: (conversation) => {
       void queryClient.invalidateQueries({
-        queryKey: queryKeys.conversation.all,
+        queryKey: queryKeys.conversations.all,
       });
       void queryClient.invalidateQueries({
-        queryKey: queryKeys.conversation.detail(conversation.id),
+        queryKey: queryKeys.conversations.detail(conversation.id),
       });
     },
     onError: (error: Error) => {
@@ -63,7 +63,7 @@ export function useUpdateConversation() {
   });
 }
 
-export async function useDeleteConversation(activeId: string) {
+export function useDeleteConversation(activeId: string | undefined) {
   const queryClient = useQueryClient();
   const router = useRouter();
 
@@ -71,7 +71,7 @@ export async function useDeleteConversation(activeId: string) {
     mutationFn: (id: string) => deleteConversation(id),
     onSuccess: ({ id }) => {
       void queryClient.invalidateQueries({
-        queryKey: queryKeys.conversation.all,
+        queryKey: queryKeys.conversations.all,
       });
       queryClient.removeQueries({
         queryKey: queryKeys.messages.byConversation(id),
