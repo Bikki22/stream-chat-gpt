@@ -1,3 +1,4 @@
+import { loadChatMessages } from "@/features/ai/actions/chat-store";
 import { getConversation } from "@/features/conversation/actions/conversations-actions";
 import ConversationView from "@/features/conversation/components/conversation-view";
 import { notFound } from "next/navigation";
@@ -16,7 +17,7 @@ const page = async ({ params }: ConversationPageProps) => {
     notFound();
   }
 
-  // const initialMessages = await loadChatMessages(id);
+  const initialMessages = await loadChatMessages(id);
 
   return (
     <ConversationView
