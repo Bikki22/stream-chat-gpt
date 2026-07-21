@@ -9,10 +9,10 @@ import { queryKeys } from "../utils/query-keys";
 import { toast } from "sonner";
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import { Separator } from "@/components/ui/separator";
-import ChatEmpty from "./chat-empty";
 import ChatMessages from "./chat-messages";
 import { Loader } from "@/components/ai-elements/loader";
 import { ChatComposer } from "./chat-composer";
+import { ChatEmpty } from "./chat-empty";
 
 type ConversationViewProps = {
   conversationId: string;
